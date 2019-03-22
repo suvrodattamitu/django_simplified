@@ -5,7 +5,13 @@
 
 		<ul>
 			{% for x in my_list %}
-			<li>{{ x }}</li>
+
+			{% if x|divisibleby:2 %}
+				<li>{{ x  }} is even</li>
+			{% else %}
+				<li>{{ x  }} is odd</li>
+			{% endif %}
+
 			{% endfor %}
 		</ul>
 {% endblock %}
