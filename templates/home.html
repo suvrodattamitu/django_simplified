@@ -1,10 +1,7 @@
-<html>
-<head>
-	<title>Basic Home</title>
-</head>
-<body>
+{% extends 'app.html' %}
 
-	<h1>Hello home</h1>
+{% block content %}
+		<h1>Hello {{ request.user }}</h1>
+{% endblock %}
+	
 
-</body>
-</html>

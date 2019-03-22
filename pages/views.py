@@ -8,7 +8,12 @@ def contact_view(request,*args,**kwargs):
 	return render(request,"contact.html",{})
 
 def about_view(request,*args,**kwargs):
-	return render(request,"about.html",{})
+	context = {
+	  "name" : "suvro datta mitu",
+	  "email": "suvrodatta95@gmail.com",
+	  "my_list":[1,2,3,4],
+	}
+	return render(request,"about.html",context)
 
 def blog_view(request,*args,**kwargs):
 	return HttpResponse("<h1>Hello Blog</h1>")

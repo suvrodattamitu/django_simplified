@@ -1,10 +1,14 @@
-<html>
-<head>
-	<title>Basic About Page</title>
-</head>
-<body>
+{% extends 'app.html' %}
 
-	<h1>Hello About Page</h1>
+{% block content %}
+		<h1>Hello About Page</h1>
 
-</body>
-</html>
+		<ul>
+			{% for x in my_list %}
+			<li>{{ x }}</li>
+			{% endfor %}
+		</ul>
+{% endblock %}
+
+	
+
