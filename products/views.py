@@ -1,9 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 
 from .models import Product
 
 from .forms import PureForm,ProductForm
+
+def product_delete_view(request,my_id):
+	obj = get_object_or_404(Product,id=my_id)
+	if request.method == 'POST':
+		obj.delete()
+		return redirect('/')
+	context={
+		'object':obj
+	}
+
+	return render(request,'products/product_delete.html',context)
+
 
 def product_create_view(request):
 	form = ProductForm(request.POST or None)
@@ -18,7 +30,8 @@ def product_create_view(request):
 
 
 def product_dynamic_view(request,my_id):
-	obj = Product.objects.get(id=my_id)
+	#obj = Product.objects.get(id=my_id)
+	obj = get_object_or_404(Product,id=my_id)
 	context = {
 		'object':obj,
 	}
