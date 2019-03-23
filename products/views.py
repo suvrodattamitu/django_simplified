@@ -17,6 +17,14 @@ def product_create_view(request):
 	return render(request,"products/product_create.html",context)
 
 
+def product_dynamic_view(request,my_id):
+	obj = Product.objects.get(id=my_id)
+	context = {
+		'object':obj,
+	}
+	#return HttpResponse("suvro")
+	return render(request,"products/product_detail.html",context)
+
 #pure django form
 # from .forms import PureForm
 # def product_create_view(request):
