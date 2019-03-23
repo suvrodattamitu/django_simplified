@@ -1,0 +1,46 @@
+raw form..
+
+0.set a route
+
+1. need a form 
+
+{% extends 'app.html' %}
+
+{% block content %}
+	
+	<form method="POST" action=".">
+		{% csrf_token %}
+
+		<input type="text" name="title" placeholder="your title" /><br>
+		<input type="text" name="description" placeholder="your description" /><br>
+		<input type="text" name="price" placeholder="your price" /><br>
+		<input type="text" name="summary" placeholder="your summary" /><br>
+		<input type="checkbox" name="featured" value="1" checked /><br>
+		<input type="submit" value="save"/><br>
+
+	</form>
+	
+{% endblock %}
+
+2.Have to work in views with this form
+
+def product_create_view(request):
+	if request.method == 'POST':
+
+
+		my_title = request.POST.get('title')
+		my_description = request.POST.get('description')
+		my_summary = request.POST.get('summary')
+		my_featured = request.POST.get('featured')
+		if request.POST.get('featured')  == None:
+			my_featured = 0
+		my_price = request.POST.get('price')
+		print(my_title)
+		print(my_description)
+		print(my_summary)
+		print(my_featured)
+		print(my_price)
+		#save data
+		Product.objects.create(title=my_title,description=my_description,price=my_price,summary=my_summary,featured=my_featured)
+                context = {}
+		return render(request,"products/product_create.html",context)

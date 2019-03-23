@@ -1,0 +1,17 @@
+{% extends 'app.html' %}
+
+{% block content %}
+	
+	<form method="POST" action=".">
+		{% csrf_token %}
+
+		<input type="text" name="title" placeholder="your title" /><br>
+		<input type="text" name="description" placeholder="your description" /><br>
+		<input type="text" name="price" placeholder="your price" /><br>
+		<input type="text" name="summary" placeholder="your summary" /><br>
+		<input type="checkbox" name="featured" value="1" checked /><br>
+		<input type="submit" value="save"/><br>
+
+	</form>
+	
+{% endblock %}
