@@ -3,24 +3,38 @@ from django.http import HttpResponse
 
 from .models import Product
 
-#pure django form
-from .forms import PureForm
-def product_create_view(request):
-	#form = PureForm(request.POST or None)//its can be use without if else 
-	if request.method == 'GET':
-		form = PureForm()
-	elif request.method == 'POST':
-		form = PureForm(request.POST)
-		if form.is_valid():
-			#data is clean
-			print(form.cleaned_data)
-			Product.objects.create(**form.cleaned_data)
-			
+from .forms import PureForm,ProductForm
 
+def product_create_view(request):
+	form = ProductForm(request.POST or None)
+	if form.is_valid():
+ 		#data is clean
+ 		print(form.cleaned_data)
+ 		Product.objects.create(**form.cleaned_data)
 	context = {
 		"form":form
 	}
 	return render(request,"products/product_create.html",context)
+
+
+#pure django form
+# from .forms import PureForm
+# def product_create_view(request):
+# 	#form = PureForm(request.POST or None)//its can be use without if else 
+# 	if request.method == 'GET':
+# 		form = PureForm()
+# 	elif request.method == 'POST':
+# 		form = PureForm(request.POST)
+# 		if form.is_valid():
+# 			#data is clean
+# 			print(form.cleaned_data)
+# 			Product.objects.create(**form.cleaned_data)
+			
+
+# 	context = {
+# 		"form":form
+# 	}
+# 	return render(request,"products/product_create.html",context)
 
 
 #raw html form
