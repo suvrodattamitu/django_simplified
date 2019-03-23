@@ -5,6 +5,13 @@ from .models import Product
 
 from .forms import PureForm,ProductForm
 
+def product_list_view(request):
+	obj = Product.objects.all()
+	context = {
+		'object_list':obj
+	}
+	return render(request,'products/product_list.html',context)
+
 def product_delete_view(request,my_id):
 	obj = get_object_or_404(Product,id=my_id)
 	if request.method == 'POST':
