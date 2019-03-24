@@ -30,7 +30,7 @@ urlpatterns = [
     path('product/',product_detail_view),
 	path('create/',product_create_view),
     path('admin/', admin.site.urls),
-    path('product/<int:my_id>/',product_dynamic_view),
-    path('product/<int:my_id>/delete/',product_delete_view),
+    path('product/<int:my_id>/',product_dynamic_view,name='product-detail'),
+    path('product/<int:my_id>/delete/',product_delete_view,name='product-delete'),
     path('product/lists/',product_list_view),
 ]
